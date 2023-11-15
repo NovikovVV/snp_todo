@@ -3,7 +3,7 @@ import "./beforeunload.js";
 import "./load-data.js";
 import { createListItem } from "./create-list-item.js";
 import { filterTasks } from "./filter-tasks.js";
-import { getTasks,  changeCounter} from "./util.js";
+import { getTasks,  changeCounter, checkEmptyField} from "./util.js";
 
 const form = document.querySelector('.build__form');
 const formInput = form.querySelector('.build__form-input');
@@ -21,3 +21,15 @@ form.addEventListener('submit', (evt) => {
     formInput.value = '';
   }
 });
+
+form.addEventListener('focusout', function (evt) {
+  checkEmptyField(formInput);
+})
+
+
+form.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    formInput.blur();
+    checkEmptyField(formInput);
+  }
+})

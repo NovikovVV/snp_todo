@@ -39,4 +39,11 @@ const changeCounter = () => {
   counterValue.textContent = tasks.length;
 };
 
-export {getTasks, getActiveFilter, checkEmptyValue, checkTasks, changeCounter};
+// проверяет что в поле ввода текст начинается с символов, а не с пробелов
+const checkEmptyField = function (item) {
+  if (!item.value.indexOf(' ')) {
+    item.value = '';
+  }
+}
+
+export {getTasks, getActiveFilter, checkEmptyValue, checkTasks, changeCounter, checkEmptyField};
