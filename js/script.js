@@ -1,6 +1,7 @@
 import "./remove-complete.js";
 import "./beforeunload.js";
 import "./load-data.js";
+import "./select-all.js";
 import { createListItem } from "./create-list-item.js";
 import { filterTasks } from "./filter-tasks.js";
 import { getTasks,  changeCounter, checkEmptyField} from "./util.js";
