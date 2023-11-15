@@ -8,13 +8,14 @@ import { getTasks,  changeCounter} from "./util.js";
 const form = document.querySelector('.build__form');
 const formInput = form.querySelector('.build__form-input');
 const list = document.querySelector('.todo-list');
+const controls = list.querySelector('.todo-list__controls');
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   if (formInput.value) {
     list.classList.remove('hidden');
-    list.append(createListItem(formInput.value));
+    controls.after(createListItem(formInput.value));
     filterTasks(getTasks());
     changeCounter();
     formInput.value = '';
