@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo list</title>
+</head>
+
+<body>
+  <div class="container">
+    <section class="build" id="build">
+      <h2 class="build__heading h2-heading">TODO list</h2>
+      <form class="build__form" action="https://echo.htmlacademy.ru/"
+        method="post">
+        <label class="build__form-field" for="name">
+          <input class="build__form-input" id="name"
+            placeholder="Введите задачу" type="text">
+        </label>
+      </form>
+      <ul class="todo-list hidden">
+        <li class="todo-list__controls">
+          <button class="todo-list__controls-item todo-list__controls-item--all selected">Все задачи</button>
+          <button class="todo-list__controls-item todo-list__controls-item--active">Активные</button>
+          <button class="todo-list__controls-item todo-list__controls-item--completed">Завершенные</button>
+          <span class="counter">Осталось задач: <span class="counter__value">0</span></span>
+          <button class="remove-complete">Удалить выполненные</button>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <script src="js/script.js" type="module"></script>
+</body>
+
+</html>
