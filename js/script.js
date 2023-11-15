@@ -13,7 +13,7 @@ const controls = list.querySelector('.todo-list__controls');
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  if (formInput.value && formInput.value.indexOf(' ') !== 0) {
+  if (formInput.value && formInput.value.indexOf(' ')) {
     list.classList.remove('hidden');
     controls.after(createListItem(formInput.value));
     filterTasks(getTasks());
