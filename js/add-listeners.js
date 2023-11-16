@@ -23,9 +23,11 @@ const addListeners = (item) => {
     if (listItemCheck.checked) {
       listItemInput.classList.add('list__item--complete');
       listItemCheck.setAttribute('checked', 'checked');
+      listItemCheck.checked = true;
     } else {
       listItemInput.classList.remove('list__item--complete');
       listItemCheck.removeAttribute('checked');
+      listItemCheck.checked = false;
     }
 
     changeCounter();
