@@ -11,10 +11,21 @@ const addListeners = (item) => {
   // двойной клик на незавершенной задаче позволяет ее редактировать
   item.addEventListener('dblclick', () => {
     if (!listItemCheck.checked) {
+      const value = listItemInput.value;
       const end = listItemInput.value.length;
+
       listItemInput.removeAttribute('disabled');
       listItemInput.setSelectionRange(end, end);
       listItemInput.focus();
+
+      item.addEventListener('keydown', function (evt) {
+        if (evt.key === 'Escape') {
+          listItemInput.setAttribute('value', value);
+          listItemInput.value = value;
+          listItemInput.blur();
+          listItemInput.setAttribute('disabled', 'disabled');
+        }
+      })
     }
   });
 
@@ -51,7 +62,7 @@ const addListeners = (item) => {
     }
     checkTasks();
   });
-
+  
   // по нажатию на крестик удаляет задачу
   listItemClose.addEventListener('click', () => {
     listItemClose.parentNode.remove();
