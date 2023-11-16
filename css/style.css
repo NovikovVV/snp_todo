@@ -261,6 +261,8 @@ body {
 }
 
 .list__item-input {
+  vertical-align: middle;
+  resize: none;
   border: none;
   width: 100%;
   background-color: var(--beige-100);
@@ -297,12 +299,13 @@ body {
   border: none;
   top: 50%;
   margin-top: -10px;
-  right: 10px;
+  right: 15px;
 }
 
 @media (min-width: 1024px) {
   .list__item-close {
     cursor: pointer;
+    right: 25px;
   }
 }
 

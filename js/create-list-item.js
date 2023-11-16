@@ -7,7 +7,7 @@ const createListItem = (value) => {
   const template =
   `<li class="todo-list__item">
     <input class="list__item-check" type="checkbox">
-    <input class="list__item-input" type="text" value="${value}" disabled>
+    <textarea class="list__item-input" rows="1" disabled>${value}</textarea>
     <button class="list__item-close"></button>
   </li>`;
   const parsedDocument = parser.parseFromString(template, 'text/html');
