@@ -35,7 +35,7 @@ body {
   background-color: var(--beige-100);
 }
 
-.h2-heading {
+.h1-heading {
   margin: 0;
   font-size: 34px;
   font-weight: 700;
@@ -44,7 +44,7 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .h2-heading {
+  .h1-heading {
     font-size: 59px;
     font-weight: 700;
     line-height: 73px;

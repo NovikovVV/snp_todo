@@ -17,18 +17,15 @@ const checkEmptyValue = (item) => {
   if (!item.value) {
     item.parentNode.remove();
     changeCounter();
-  }
+  };
 };
 
 //показывает или скрывает список задач
 // проверяется наличие 2 и более "детей", т.к. 1 ребенок это блок с кнопками
 const checkTasks = () => {
   const list = document.querySelector('.todo-list');
-  if (list.children.length === 1) {
-    list.classList.add('hidden');
-  } else {
-    list.classList.remove('hidden');
-  }
+
+  list.children.length === 1 ? list.classList.add('hidden') : list.classList.remove('hidden')
 };
 
 // обновляет счетчик активных задач
@@ -43,7 +40,7 @@ const changeCounter = () => {
 const checkEmptyField = (item) => {
   if (!item.value.indexOf(' ')) {
     item.value = '';
-  }
+  };
 };
 
 const markAsCompleted = (item) => {
@@ -62,6 +59,24 @@ const markAsIncomplete = (item) => {
   listItemCheck.checked = false;
 };
 
+const enableField = (item) => {
+  const selectionEnd = item.selectionEnd;
+
+  item.disabled = false;
+  item.focus();
+  item.setSelectionRange(selectionEnd, selectionEnd);
+}
+
+const disableField = (item) => {
+  item.disabled = true;
+  item.textContent = item.value.trimEnd();
+  item.value = item.value.trimEnd();
+
+  if (!item.value.trim()) {
+    item.parentNode.remove();
+  };
+};
+
 const createUtil = () => {
   const util = {
     'getTasks': getTasks,
@@ -71,7 +86,9 @@ const createUtil = () => {
     'changeCounter': changeCounter,
     'checkEmptyField': checkEmptyField,
     'markAsCompleted': markAsCompleted,
-    'markAsIncomplete': markAsIncomplete
+    'markAsIncomplete': markAsIncomplete,
+    'disableField': disableField,
+    'enableField': enableField
   };
 
   return util;
