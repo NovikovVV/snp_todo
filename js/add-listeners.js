@@ -50,6 +50,7 @@ const addListeners = (item) => {
   listItemInput.addEventListener('focusout', () => {
     listItemInput.setAttribute('disabled', 'disabled');
     listItemInput.setAttribute('value', listItemInput.value);
+    listItemInput.textContent = listItemInput.value;
     checkEmptyValue(listItemInput);
     checkTasks();
   });
@@ -59,10 +60,11 @@ const addListeners = (item) => {
     if (evt.key === 'Enter') {
       listItemInput.setAttribute('disabled', 'disabled');
       listItemInput.setAttribute('value', listItemInput.value);
+      listItemInput.textContent = listItemInput.value;
     }
     checkTasks();
   });
-  
+
   // по нажатию на крестик удаляет задачу
   listItemClose.addEventListener('click', () => {
     listItemClose.parentNode.remove();
