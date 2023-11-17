@@ -3,31 +3,29 @@ import { createUtil } from "./util.js"
 
 const util = createUtil();
 
+// находит все задачи на странице
+// проходится по каждому элементу, и если элемент не отмечен как исполненный -
+// устанавливает признак выполнения
 const markAllTasks = () => {
   const tasks = util.getTasks();
   tasks.forEach((item) => {
     const listItemCheck = item.querySelector('.list__item-check');
-    const listItemInput = item.querySelector('.list__item-input');
-
     if (!listItemCheck.checked) {
-      listItemCheck.setAttribute('checked', 'checked');
-      listItemInput.classList.add('list__item--complete');
-      listItemCheck.checked = true;
+      util.markAsCompleted(item);
     }
   })
 };
 
+// находит все задачи на странице
+// проходится по каждому элементу, и снимает признак выполнения
 const unmarkAtllTasks = () => {
   const tasks = util.getTasks();
   tasks.forEach((item) => {
-    const listItemCheck = item.querySelector('.list__item-check')
-    const listItemInput = item.querySelector('.list__item-input');
-    listItemInput.classList.remove('list__item--complete');
-    listItemCheck.removeAttribute('checked');
-    listItemCheck.checked = false;
+    util.markAsIncomplete(item)
   })
 }
 
+// проверяет все ли задачи на странице отмечены как выполненные
 const isAllCompleted = () => {
   const tasks = util.getTasks();
   return tasks.every((item) => {

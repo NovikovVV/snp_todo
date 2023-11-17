@@ -46,6 +46,22 @@ const checkEmptyField = (item) => {
   }
 };
 
+const markAsCompleted = function (item) {
+  const listItemCheck = item.querySelector('.list__item-check');
+  const listItemInput = item.querySelector('.list__item-input');
+  listItemCheck.setAttribute('checked', 'checked');
+  listItemInput.classList.add('list__item--complete');
+  listItemCheck.checked = true;
+};
+
+const markAsIncomplete = function (item) {
+  const listItemCheck = item.querySelector('.list__item-check');
+  const listItemInput = item.querySelector('.list__item-input');
+  listItemInput.classList.remove('list__item--complete');
+  listItemCheck.removeAttribute('checked');
+  listItemCheck.checked = false;
+};
+
 const createUtil = () => {
   const util = {
     'getTasks': getTasks,
@@ -53,7 +69,9 @@ const createUtil = () => {
     'checkEmptyValue': checkEmptyValue,
     'checkTasks': checkTasks,
     'changeCounter': changeCounter,
-    'checkEmptyField': checkEmptyField
+    'checkEmptyField': checkEmptyField,
+    'markAsCompleted': markAsCompleted,
+    'markAsIncomplete': markAsIncomplete
   };
 
   return util;
