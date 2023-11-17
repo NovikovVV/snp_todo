@@ -33,7 +33,7 @@ const addListeners = (item) => {
   });
 
   // помечает задачу как завершенную или снимает данный признак
-  listItemCheck.addEventListener('change', () => {
+  listItemCheck.addEventListener('click', () => {
     listItemCheck.checked ? util.markAsCompleted(item) : util.markAsIncomplete(item);
     util.changeCounter();
     filterTasks(util.getTasks());
