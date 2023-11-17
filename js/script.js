@@ -24,12 +24,12 @@ form.addEventListener('submit', (evt) => {
   }
 });
 
-form.addEventListener('focusout', function (evt) {
+form.addEventListener('focusout', (evt) => {
   util.checkEmptyField(formInput);
 })
 
 
-form.addEventListener('keydown', function (evt) {
+form.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     formInput.blur();
     util.checkEmptyField(formInput);

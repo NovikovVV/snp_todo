@@ -19,7 +19,7 @@ const addListeners = (item) => {
       listItemInput.setSelectionRange(end, end);
       listItemInput.focus();
 
-      item.addEventListener('keydown', function (evt) {
+      item.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape') {
           listItemInput.setAttribute('value', value);
           listItemInput.value = value;

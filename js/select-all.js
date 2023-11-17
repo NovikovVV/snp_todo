@@ -3,9 +3,9 @@ import { createUtil } from "./util.js"
 
 const util = createUtil();
 
-const markAllTasks = function () {
+const markAllTasks = () => {
   const tasks = util.getTasks();
-  tasks.forEach(function (item) {
+  tasks.forEach((item) => {
     const listItemCheck = item.querySelector('.list__item-check');
     const listItemInput = item.querySelector('.list__item-input');
 
@@ -17,7 +17,7 @@ const markAllTasks = function () {
   })
 };
 
-const unmarkAtllTasks = function () {
+const unmarkAtllTasks = () => {
   const tasks = util.getTasks();
   tasks.forEach((item) => {
     const listItemCheck = item.querySelector('.list__item-check')
@@ -37,7 +37,7 @@ const isAllCompleted = () => {
 }
 
 const selectAllButton = document.querySelector('.select-all');
-selectAllButton.addEventListener('click', function () {
+selectAllButton.addEventListener('click', () => {
   const tasks = util.getTasks();
 
   isAllCompleted() ? unmarkAtllTasks() : markAllTasks();

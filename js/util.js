@@ -40,11 +40,11 @@ const changeCounter = () => {
 };
 
 // проверяет что в поле ввода текст начинается с символов, а не с пробелов
-const checkEmptyField = function (item) {
+const checkEmptyField = (item) => {
   if (!item.value.indexOf(' ')) {
     item.value = '';
   }
-}
+};
 
 const createUtil = () => {
   const util = {
@@ -57,6 +57,6 @@ const createUtil = () => {
   };
 
   return util;
-}
+};
 
 export {createUtil};
