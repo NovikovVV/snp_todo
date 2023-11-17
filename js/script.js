@@ -4,8 +4,9 @@ import "./load-data.js";
 import "./select-all.js";
 import { createListItem } from "./create-list-item.js";
 import { filterTasks } from "./filter-tasks.js";
-import { getTasks,  changeCounter, checkEmptyField} from "./util.js";
+import { createUtil} from "./util.js";
 
+const util = createUtil();
 const form = document.querySelector('.build__form');
 const formInput = form.querySelector('.build__form-input');
 const list = document.querySelector('.todo-list');
@@ -17,20 +18,20 @@ form.addEventListener('submit', (evt) => {
   if (formInput.value && formInput.value.indexOf(' ')) {
     list.classList.remove('hidden');
     controls.after(createListItem(formInput.value));
-    filterTasks(getTasks());
-    changeCounter();
+    filterTasks(util.getTasks());
+    util.changeCounter();
     formInput.value = '';
   }
 });
 
 form.addEventListener('focusout', function (evt) {
-  checkEmptyField(formInput);
+  util.checkEmptyField(formInput);
 })
 
 
 form.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape') {
     formInput.blur();
-    checkEmptyField(formInput);
+    util.checkEmptyField(formInput);
   }
 })

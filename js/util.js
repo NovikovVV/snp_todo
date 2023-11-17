@@ -46,4 +46,17 @@ const checkEmptyField = function (item) {
   }
 }
 
-export {getTasks, getActiveFilter, checkEmptyValue, checkTasks, changeCounter, checkEmptyField};
+const createUtil = () => {
+  const util = {
+    'getTasks': getTasks,
+    'getActiveFilter': getActiveFilter,
+    'checkEmptyValue': checkEmptyValue,
+    'checkTasks': checkTasks,
+    'changeCounter': changeCounter,
+    'checkEmptyField': checkEmptyField
+  };
+
+  return util;
+}
+
+export {createUtil};

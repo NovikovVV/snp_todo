@@ -1,8 +1,10 @@
 import { filterTasks } from "./filter-tasks.js";
-import { changeCounter, getTasks } from "./util.js"
+import { createUtil } from "./util.js"
+
+const util = createUtil();
 
 const markAllTasks = function () {
-  const tasks = getTasks();
+  const tasks = util.getTasks();
   tasks.forEach(function (item) {
     const listItemCheck = item.querySelector('.list__item-check');
     const listItemInput = item.querySelector('.list__item-input');
@@ -16,7 +18,7 @@ const markAllTasks = function () {
 };
 
 const unmarkAtllTasks = function () {
-  const tasks = getTasks();
+  const tasks = util.getTasks();
   tasks.forEach((item) => {
     const listItemCheck = item.querySelector('.list__item-check')
     const listItemInput = item.querySelector('.list__item-input');
@@ -27,7 +29,7 @@ const unmarkAtllTasks = function () {
 }
 
 const isAllCompleted = () => {
-  const tasks = getTasks();
+  const tasks = util.getTasks();
   return tasks.every((item) => {
     const mark = item.querySelector('.list__item-check').checked;
     return mark;
@@ -36,9 +38,9 @@ const isAllCompleted = () => {
 
 const selectAllButton = document.querySelector('.select-all');
 selectAllButton.addEventListener('click', function () {
-  const tasks = getTasks();
+  const tasks = util.getTasks();
 
   isAllCompleted() ? unmarkAtllTasks() : markAllTasks();
-  changeCounter();
+  util.changeCounter();
   filterTasks(tasks);
 })

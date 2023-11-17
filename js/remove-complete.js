@@ -1,6 +1,6 @@
-import { checkTasks } from "./util.js";
-import { changeCounter } from "./util.js";
+import { createUtil } from "./util.js";
 
+const util = createUtil();
 const removeCompleteButton = document.querySelector('.remove-complete');
 
 // по клику на кнопку - удаляет все завершенные задачи
@@ -9,8 +9,8 @@ removeCompleteButton.addEventListener('click', () => {
   if(completeTasks) {
     completeTasks.forEach((item) => {
       item.parentNode.remove();
-      changeCounter();
-      checkTasks();
+      util.changeCounter();
+      util.checkTasks();
     })
   }
 });

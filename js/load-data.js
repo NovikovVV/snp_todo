@@ -1,7 +1,8 @@
-import { checkTasks, getTasks, changeCounter } from "./util.js";
+import { createUtil} from "./util.js";
 import { filterTasks } from "./filter-tasks.js";
 import { addListeners } from "./add-listeners.js";
 
+const util = createUtil();
 
 // восстанавливает сохраненные задачи пользователя
 const loadData = () => {
@@ -19,12 +20,12 @@ const loadData = () => {
 
 window.addEventListener('load', () => {
   loadData();
-  checkTasks();
-  filterTasks(getTasks());
+  util.checkTasks();
+  filterTasks(util.getTasks());
 
-  getTasks().forEach((item) => {
+  util.getTasks().forEach((item) => {
     addListeners(item)
   });
 
-  changeCounter();
+  util.changeCounter();
 })

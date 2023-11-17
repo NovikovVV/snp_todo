@@ -1,5 +1,6 @@
-import { getTasks, getActiveFilter } from "./util.js";
+import { createUtil } from "./util.js";
 
+const util = createUtil();
 const filters = document.querySelectorAll('.todo-list__controls-item');
 const filtersContainer = document.querySelector('.todo-list__controls');
 const allTasksFilter = filtersContainer.querySelector('.todo-list__controls-item--all');
@@ -16,7 +17,7 @@ filters.forEach((item) => {
       })
       item.classList.add('selected')
 
-      filterTasks(getTasks());
+      filterTasks(util.getTasks());
     }
   })
 })
@@ -58,7 +59,7 @@ const showCompleteTasks = (tasks) => {
 
 // в зависимости от того, какой фильтр сейчас активен - вызывает ту или иную функцию для отображения задач на экране
 const filterTasks = (tasks) => {
-  const activeFilter = getActiveFilter();
+  const activeFilter = util.getActiveFilter();
 
   switch (activeFilter) {
     case allTasksFilter:

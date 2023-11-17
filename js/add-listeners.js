@@ -1,6 +1,7 @@
 import { filterTasks } from "./filter-tasks.js";
-import { getTasks, checkEmptyValue, checkTasks, changeCounter } from "./util.js";
+import { createUtil} from "./util.js";
 
+const util = createUtil();
 
 // функция добавляет обработчики событий на задачу
 const addListeners = (item) => {
@@ -41,8 +42,8 @@ const addListeners = (item) => {
       listItemCheck.checked = false;
     }
 
-    changeCounter();
-    filterTasks(getTasks());
+    util.changeCounter();
+    filterTasks(util.getTasks());
   });
 
   // уход фокуса с поля задачи возвращает ей заблокированное состояние
@@ -51,8 +52,8 @@ const addListeners = (item) => {
     listItemInput.setAttribute('disabled', 'disabled');
     listItemInput.setAttribute('value', listItemInput.value);
     listItemInput.textContent = listItemInput.value;
-    checkEmptyValue(listItemInput);
-    checkTasks();
+    util.checkEmptyValue(listItemInput);
+    util.checkTasks();
   });
 
   // по нажатию enter возвращает задаче заблокированное состояние
@@ -62,14 +63,14 @@ const addListeners = (item) => {
       listItemInput.setAttribute('value', listItemInput.value);
       listItemInput.textContent = listItemInput.value;
     }
-    checkTasks();
+    util.checkTasks();
   });
 
   // по нажатию на крестик удаляет задачу
   listItemClose.addEventListener('click', () => {
     listItemClose.parentNode.remove();
-    changeCounter();
-    checkTasks();
+    util.changeCounter();
+    util.checkTasks();
   });
 
 };
