@@ -46,7 +46,7 @@ const checkEmptyField = (item) => {
   }
 };
 
-const markAsCompleted = function (item) {
+const markAsCompleted = (item) => {
   const listItemCheck = item.querySelector('.list__item-check');
   const listItemInput = item.querySelector('.list__item-input');
   listItemCheck.setAttribute('checked', 'checked');
@@ -54,7 +54,7 @@ const markAsCompleted = function (item) {
   listItemCheck.checked = true;
 };
 
-const markAsIncomplete = function (item) {
+const markAsIncomplete = (item) => {
   const listItemCheck = item.querySelector('.list__item-check');
   const listItemInput = item.querySelector('.list__item-input');
   listItemInput.classList.remove('list__item--complete');

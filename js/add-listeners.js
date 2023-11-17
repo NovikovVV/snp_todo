@@ -13,12 +13,14 @@ const addListeners = (item) => {
   item.addEventListener('dblclick', () => {
     if (!listItemCheck.checked) {
       const value = listItemInput.value;
-      const end = listItemInput.value.length;
+      const end = value.length;
 
       listItemInput.removeAttribute('disabled');
       listItemInput.setSelectionRange(end, end);
       listItemInput.focus();
 
+      // добаляет обработчик события нажатия на кнопку esc, в этом случае
+      // отменяет изменения внесенные в текст задачи
       item.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape') {
           listItemInput.setAttribute('value', value);
@@ -32,16 +34,7 @@ const addListeners = (item) => {
 
   // помечает задачу как завершенную или снимает данный признак
   listItemCheck.addEventListener('change', () => {
-    if (listItemCheck.checked) {
-      listItemInput.classList.add('list__item--complete');
-      listItemCheck.setAttribute('checked', 'checked');
-      listItemCheck.checked = true;
-    } else {
-      listItemInput.classList.remove('list__item--complete');
-      listItemCheck.removeAttribute('checked');
-      listItemCheck.checked = false;
-    }
-
+    listItemCheck.checked ? util.markAsCompleted(item) : util.markAsIncomplete(item);
     util.changeCounter();
     filterTasks(util.getTasks());
   });
