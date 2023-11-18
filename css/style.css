@@ -261,6 +261,7 @@ body {
 }
 
 .list__item-input {
+  max-height: 43px;
   vertical-align: middle;
   resize: none;
   border: none;
@@ -274,6 +275,7 @@ body {
 @media (min-width: 1024px) {
   .list__item-input {
     padding: 20px 40px;
+    max-height: 68px;
   }
 }
 
