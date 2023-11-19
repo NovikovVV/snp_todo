@@ -2,19 +2,18 @@
 const getTasks = () => {
   const list = document.querySelector('.todo-list');
   const tasks = Array.from(list.querySelectorAll('.todo-list__item'));
+
   return tasks;
 };
 
 // находит текущий активный фильтр
 const getActiveFilter = () => {
-  const buttonsContainer = document.querySelector('.todo-list__controls');
-  const activeFilter = buttonsContainer.querySelector('.selected');
-  return activeFilter;
+  return document.querySelector('.selected');
 };
 
 // проверяет что в поле ввода текста есть значение, если текста нет - удаляет задачу
 const checkEmptyValue = (item) => {
-  if (!item.value) {
+  if (!item.textContent.trimEnd()) {
     item.parentNode.remove();
     changeCounter();
   };
@@ -33,6 +32,7 @@ const changeCounter = () => {
   const counter = document.querySelector('.counter');
   const counterValue = counter.querySelector('.counter__value');
   const tasks = document.querySelectorAll('.list__item-input:not(.list__item--complete)');
+
   counterValue.textContent = tasks.length;
 };
 
@@ -43,38 +43,24 @@ const checkEmptyField = (item) => {
   };
 };
 
+// помечает задачу как выполненную
 const markAsCompleted = (item) => {
   const listItemCheck = item.querySelector('.list__item-check');
   const listItemInput = item.querySelector('.list__item-input');
+
   listItemCheck.setAttribute('checked', 'checked');
   listItemInput.classList.add('list__item--complete');
   listItemCheck.checked = true;
 };
 
+// помечает задачу как невыполненную
 const markAsIncomplete = (item) => {
   const listItemCheck = item.querySelector('.list__item-check');
   const listItemInput = item.querySelector('.list__item-input');
+
   listItemInput.classList.remove('list__item--complete');
   listItemCheck.removeAttribute('checked');
   listItemCheck.checked = false;
-};
-
-const enableField = (item) => {
-  const selectionEnd = item.selectionEnd;
-
-  item.disabled = false;
-  item.focus();
-  item.setSelectionRange(selectionEnd, selectionEnd);
-}
-
-const disableField = (item) => {
-  item.disabled = true;
-  item.textContent = item.value.trimEnd();
-  item.value = item.value.trimEnd();
-
-  if (!item.value.trim()) {
-    item.parentNode.remove();
-  };
 };
 
 const createUtil = () => {
@@ -87,11 +73,9 @@ const createUtil = () => {
     'checkEmptyField': checkEmptyField,
     'markAsCompleted': markAsCompleted,
     'markAsIncomplete': markAsIncomplete,
-    'disableField': disableField,
-    'enableField': enableField
   };
 
   return util;
 };
 
-export {createUtil};
+export { createUtil };

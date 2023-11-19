@@ -14,13 +14,13 @@ filters.forEach((item) => {
     if (!item.classList.contains('selected')) {
       filters.forEach((item) => {
         item.classList.remove('selected')
-      })
-      item.classList.add('selected')
+      });
+      item.classList.add('selected');
 
       filterTasks(util.getTasks());
-    }
-  })
-})
+    };
+  });
+});
 
 // показывает все задачи на странице независимо от состояния
 // в качестве аргумента принимает массив задач
@@ -76,4 +76,4 @@ const filterTasks = (tasks) => {
   }
 }
 
-export {filterTasks}
+export { filterTasks };

@@ -3,60 +3,53 @@ import { createUtil } from "./util.js";
 
 const util = createUtil();
 
-// функция добавляет обработчики событий на задачу
+// добавление на задачу и элементов внутри нее обработчиков событий
 const addListeners = (item) => {
   const listItemCheck = item.querySelector('.list__item-check');
   const listItemInput = item.querySelector('.list__item-input');
   const listItemClose = item.querySelector('.list__item-close');
 
-  // двойной клик на незавершенной задаче позволяет ее редактировать
+  // по нажатию на чекбокс отмечает задачу как исполненную или снимает данный признак
+  listItemCheck.addEventListener('click', () => {
+    listItemCheck.checked ? util.markAsCompleted(item) : util.markAsIncomplete(item);
+    util.changeCounter();
+    filterTasks(util.getTasks());
+  });
+
   listItemInput.addEventListener('dblclick', function () {
     if (!listItemCheck.checked) {
-      util.enableField(this);
-      const originalValue = this.value;
+      const initialValue = listItemInput.textContent;
 
-      // добавляет обработчик события нажатия на кнопку esc, в этом случае
-      // отменяет изменения внесенные в текст задачи
-      this.addEventListener('keydown', function (evt) {
+      listItemInput.setAttribute('contenteditable', 'true');
+      listItemInput.focus();
+      window.getSelection().selectAllChildren(listItemInput);
+      window.getSelection().collapseToEnd();
+
+      listItemInput.addEventListener('keydown', function (evt) {
         if (evt.key === 'Escape') {
-          this.value = originalValue;
-          this.textContent = originalValue;
-          util.disableField(this);
+          listItemInput.textContent = initialValue;
+          listItemInput.setAttribute('contenteditable', 'false');
         };
       });
     };
   });
 
-  // возвращает задаче заблокированное состояние
-  // если пользователь полностью стер текст задачи - удаляет задачу
   listItemInput.addEventListener('focusout', function () {
-    util.disableField(this);
+    listItemInput.setAttribute('contenteditable', 'false');
+    util.checkEmptyValue(listItemInput);
     util.changeCounter();
     util.checkTasks();
-    filterTasks(util.getTasks());
   });
 
-  // по нажатию enter возвращает задаче заблокированное состояние
-  // если пользователь полностью стер текст задачи - удаляет задачу
+
   listItemInput.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
-      util.disableField(this);
+      listItemInput.textContent = listItemInput.textContent.trimEnd();
+      listItemInput.setAttribute('contenteditable', 'false');
+      util.checkEmptyValue(listItemInput);
       util.changeCounter();
       util.checkTasks();
-      filterTasks(util.getTasks());
     };
-  });
-
-  listItemInput.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape' && !listItemCheck.checked) {
-    }
-  })
-
-  // помечает задачу как завершенную или снимает данный признак
-  listItemCheck.addEventListener('click', () => {
-    listItemCheck.checked ? util.markAsCompleted(item) : util.markAsIncomplete(item);
-    util.changeCounter();
-    filterTasks(util.getTasks());
   });
 
   // по нажатию на крестик удаляет задачу
@@ -67,4 +60,4 @@ const addListeners = (item) => {
   });
 };
 
-export { addListeners }
+export { addListeners };

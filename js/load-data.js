@@ -13,9 +13,9 @@ const loadData = () => {
     for (let index = 0; index < localStorage.length; index++) {
       const elementDoc = localStorage[index];
       const element = parser.parseFromString(elementDoc, "text/html").querySelector('.todo-list__item');
-      list.append(element)
-    }
-  }
+      list.append(element);
+    };
+  };
 };
 
 window.addEventListener('load', () => {
@@ -24,8 +24,8 @@ window.addEventListener('load', () => {
   filterTasks(util.getTasks());
 
   util.getTasks().forEach((item) => {
-    addListeners(item)
+    addListeners(item);
   });
 
   util.changeCounter();
-})
+});

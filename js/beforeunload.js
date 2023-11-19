@@ -9,4 +9,4 @@ window.addEventListener('beforeunload', () => {
   data.forEach((item, i) => {
     localStorage.setItem(i, item.outerHTML);
   });
-})
+});

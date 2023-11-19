@@ -21,17 +21,17 @@ form.addEventListener('submit', (evt) => {
     filterTasks(util.getTasks());
     util.changeCounter();
     formInput.value = '';
-  }
+  };
 });
 
 form.addEventListener('focusout', (evt) => {
   util.checkEmptyField(formInput);
-})
+});
 
 
 form.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     formInput.blur();
     util.checkEmptyField(formInput);
-  }
-})
+  };
+});
