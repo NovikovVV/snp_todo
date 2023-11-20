@@ -16,8 +16,10 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   if (formInput.value.trim()) {
+    const value = formInput.value;
+
     list.classList.remove('hidden');
-    controls.after(createListItem(formInput.value.trim()));
+    controls.after(createListItem(value));
     filterTasks(util.getTasks());
     util.changeCounter();
     formInput.value = '';
