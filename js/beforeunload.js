@@ -1,6 +1,4 @@
-import { createUtil } from "./util.js";
-
-const util = createUtil();
+import { util } from "./util.js";
 
 // сохраняет данные перед перед тем как пользователь обновляет или закрывает страницу
 window.addEventListener('beforeunload', () => {

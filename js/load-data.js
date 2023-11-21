@@ -1,8 +1,6 @@
-import { createUtil} from "./util.js";
+import { util } from "./util.js";
 import { filterTasks } from "./filter-tasks.js";
 import { addListeners } from "./add-listeners.js";
-
-const util = createUtil();
 
 // восстанавливает сохраненные задачи пользователя
 const loadData = () => {

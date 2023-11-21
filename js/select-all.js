@@ -1,7 +1,5 @@
 import { filterTasks } from "./filter-tasks.js";
-import { createUtil } from "./util.js";
-
-const util = createUtil();
+import { util } from "./util.js";
 
 // находит все задачи на странице
 // проходится по каждому элементу, и если элемент не отмечен как исполненный -

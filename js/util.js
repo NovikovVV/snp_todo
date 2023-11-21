@@ -1,15 +1,8 @@
 // собирает все созданные задачи на странице и преобразовывает их в массив
-const getTasks = () => {
-  const list = document.querySelector('.todo-list');
-  const tasks = Array.from(list.querySelectorAll('.todo-list__item'));
-
-  return tasks;
-};
+const getTasks = () => Array.from(document.querySelectorAll('.todo-list .todo-list__item'));
 
 // находит текущий активный фильтр
-const getActiveFilter = () => {
-  return document.querySelector('.selected');
-};
+const getActiveFilter = () => document.querySelector('.selected');
 
 // проверяет что в поле ввода текста есть значение, если текста нет - удаляет задачу
 const checkEmptyValue = (item) => {
@@ -24,24 +17,19 @@ const checkEmptyValue = (item) => {
 const checkTasks = () => {
   const list = document.querySelector('.todo-list');
 
-  list.children.length === 1 ? list.classList.add('hidden') : list.classList.remove('hidden')
+  getTasks().length ? list.classList.remove('hidden') : list.classList.add('hidden');
 };
 
 // обновляет счетчик активных задач
 const changeCounter = () => {
-  const counter = document.querySelector('.counter');
-  const counterValue = counter.querySelector('.counter__value');
+  const counterValue = document.querySelector('.counter__value');
   const tasks = document.querySelectorAll('.list__item-input:not(.list__item--complete)');
 
   counterValue.textContent = tasks.length;
 };
 
 // проверяет что в поле ввода текст начинается с символов, а не с пробелов
-const checkEmptyField = (item) => {
-  if (!item.value.indexOf(' ')) {
-    item.value = '';
-  };
-};
+const checkEmptyField = (item) => item.value = item.value.trim();
 
 // помечает задачу как выполненную
 const markAsCompleted = (item) => {
@@ -63,19 +51,16 @@ const markAsIncomplete = (item) => {
   listItemCheck.checked = false;
 };
 
-const createUtil = () => {
   const util = {
-    'getTasks': getTasks,
-    'getActiveFilter': getActiveFilter,
-    'checkEmptyValue': checkEmptyValue,
-    'checkTasks': checkTasks,
-    'changeCounter': changeCounter,
-    'checkEmptyField': checkEmptyField,
-    'markAsCompleted': markAsCompleted,
-    'markAsIncomplete': markAsIncomplete,
+    getTasks,
+    getActiveFilter,
+    checkEmptyValue,
+    checkTasks,
+    changeCounter,
+    checkEmptyField,
+    markAsCompleted,
+    markAsIncomplete
   };
 
-  return util;
-};
 
-export { createUtil };
+export { util };

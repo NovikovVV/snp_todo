@@ -4,9 +4,8 @@ import "./load-data.js";
 import "./select-all.js";
 import { createListItem } from "./create-list-item.js";
 import { filterTasks } from "./filter-tasks.js";
-import { createUtil} from "./util.js";
+import { util } from "./util.js";
 
-const util = createUtil();
 const form = document.querySelector('.build__form');
 const formInput = form.querySelector('.build__form-input');
 const list = document.querySelector('.todo-list');
@@ -26,7 +25,7 @@ form.addEventListener('submit', (evt) => {
   };
 });
 
-form.addEventListener('focusout', (evt) => {
+form.addEventListener('focusout', () => {
   util.checkEmptyField(formInput);
 });
 

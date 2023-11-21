@@ -1,7 +1,5 @@
 import { filterTasks } from "./filter-tasks.js";
-import { createUtil } from "./util.js";
-
-const util = createUtil();
+import { util } from "./util.js";
 
 // добавление на задачу и элементов внутри нее обработчиков событий
 const addListeners = (item) => {

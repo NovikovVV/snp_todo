@@ -1,6 +1,5 @@
-import { createUtil } from "./util.js";
+import { util } from "./util.js";
 
-const util = createUtil();
 const filters = document.querySelectorAll('.todo-list__controls-item');
 const filtersContainer = document.querySelector('.todo-list__controls');
 const allTasksFilter = filtersContainer.querySelector('.todo-list__controls-item--all');
@@ -33,13 +32,11 @@ const showAllTasks = (tasks) => {
 // показывает только незавершенные задачи
 // в качестве аргумента принимает массив задач
 const showActiveTasks = (tasks) => {
-  showAllTasks(tasks);
-
   tasks.forEach((task) => {
     const taskInput = task.querySelector('.list__item-input');
-    if (taskInput.classList.contains('list__item--complete')) {
-      task.classList.add('hidden');
-    };
+
+    taskInput.classList.contains('list__item--complete') ?
+    task.classList.add('hidden') : task.classList.remove('hidden');
   });
 };
 
@@ -47,13 +44,11 @@ const showActiveTasks = (tasks) => {
 // показывает только завершенные задачи
 // в качестве аргумента принимает массив задач
 const showCompleteTasks = (tasks) => {
-  showAllTasks(tasks);
 
   tasks.forEach((task) => {
     const taskInput = task.querySelector('.list__item-input');
-    if (!taskInput.classList.contains('list__item--complete')) {
-      task.classList.add('hidden');
-    };
+    !taskInput.classList.contains('list__item--complete') ?
+      task.classList.add('hidden') :  task.classList.remove('hidden');
   });
 };
 
