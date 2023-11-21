@@ -47,6 +47,7 @@ const showCompleteTasks = (tasks) => {
 
   tasks.forEach((task) => {
     const taskInput = task.querySelector('.list__item-input');
+
     !taskInput.classList.contains('list__item--complete') ?
       task.classList.add('hidden') :  task.classList.remove('hidden');
   });
